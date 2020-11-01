@@ -1,0 +1,2 @@
+class PostGood < ApplicationRecord
+end

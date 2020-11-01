@@ -1,0 +1,2 @@
+class HobbyMap < ApplicationRecord
+end
