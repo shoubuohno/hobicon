@@ -1,5 +1,4 @@
-<script type="text/javascript">
-  $(function() {
+$(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -12,5 +11,4 @@
     $("#user_img").change(function(){
         readURL(this);
     });
-  });
-</script>
+});
