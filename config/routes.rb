@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   end
 
   scope module: 'user' do
+  	root :to => 'tops#top'
    resources :users, only: [:index, :show, :edit, :update]
    resources :posts do
+   	resources :post_goods, only: [:create, :destroy]
    	resources :post_comments, only: [:create, :destroy]
    end
   end

@@ -1,8 +1,8 @@
 <h1>プロフィール</h1>
 <!-- 画像スライダー機能-->
 <h4>ユーザー名 : <%= @user.user_name %></h4>
-<p>年齢</p>
-<!--現年齢算出機能-->
+<% now_age = (Date.today.strftime('%Y%m%d').to_i - @user.age.strftime('%Y%m%d').to_i) / 10000 %>
+<p>年齢 : <%= now_age %></p>
 <p>性別: <%= @user.sex %>
 </p>
 <h4>住んでいる地域 : <%= @user.area %></h4>
@@ -10,3 +10,5 @@
 <!--趣味のタグ付け-->
 <h4>自己紹介</h4>
 <%= @user.introduction %>
+
+<p><%= link_to "編集する", edit_user_path(current_user.id) %></p>
