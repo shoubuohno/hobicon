@@ -1,2 +1,9 @@
 <h1>マイページ</h1>
+<!--フォロー、フォロワーの人数表示-->
+  <%= link_to following_user_path(current_user.id) do %>
+   <%= current_user.followings.count %>フォロー
+  <% end %>
+  <%= link_to followers_user_path(current_user.id) do %>
+   <%= current_user.followers.count %>フォロワー
+  <% end %>
 <%= link_to "プロフィール", user_path(current_user.id) %>

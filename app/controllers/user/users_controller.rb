@@ -2,6 +2,18 @@ class User::UsersController < ApplicationController
   def index
   end
 
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings
+    render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -15,6 +27,7 @@ class User::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
+
 
   private
   def user_params

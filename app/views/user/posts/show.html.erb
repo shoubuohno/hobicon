@@ -1,26 +1,12 @@
+<%= link_to '編集する', edit_post_path(@post.id) %>
+<!-- 投稿内容　-->
 <%= @post.created_at.strftime('%Y/%m/%d') %><br />
 <%= attachment_image_tag @post, :image, :fill, 80, 80, format: 'jpeg' %>
 <%= @post.user.user_name %>
 <%= @post.body %>
-<!--コメント表示-->
-<table>
-	<thead>
-		<tr>
-			<th>ユーザー名</th>
-			<th>コメント内容</th>
-			<th>コメント日時</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @post.post_comments.each do |post_comment| %>
-		<tr>
-			<td><%= post_comment.user.user_name %></td>
-			<td><%= post_comment.comment %></td>
-			<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<!-- タグ付けされた趣味-->
+
+
 <!-- いいね機能 -->
 <% if @post.post_gooded_by?(current_user) %>
   <%= link_to post_post_goods_path(@post), method: :delet do %>
@@ -34,6 +20,30 @@
     <%= @post.post_goods.count %> いいね
   <% end %>
 <% end %>
+
+<!--コメント表示-->
+<table>
+	<thead>
+		<tr>
+			<th>ユーザー名</th>
+			<th>コメント内容</th>
+			<th>コメント日時</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @post.post_comments.each do |post_comment| %>
+		<tr>
+			<td><%= post_comment.user.user_name %></td>
+			<td><%= post_comment.comment %></td>
+			<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+			<td><% if post_comment.user == current_user %>
+				  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %><% end %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
 <!--コメント入力フォーム-->
 <%= form_for [@post, @post_comment] do |f| %>
  <%= f.text_area :comment %>

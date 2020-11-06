@@ -4,17 +4,24 @@ class User::PostsController < ApplicationController
   end
 
   def new
-  	@post = Post.new
+  	@post = current_user.posts.new
   end
 
   def create
-  	@post = Post.new(post_params)
-  	@post.user_id = current_user.id
+  	@post = current_user.posts.new(post_params)
   	@post.save
   	redirect_to posts_path
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    @post.update(post_params)
+    redirect_to posts_path
   end
 
   def show

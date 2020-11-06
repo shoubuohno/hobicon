@@ -65,6 +65,10 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+#bootstrapの追加
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
+#環境変数化
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

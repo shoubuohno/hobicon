@@ -11,30 +11,35 @@
 
   <body>
     <header>
-      <h3>HobiCon</h3>
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+        <h3 class="text-light">HobiCon</h3>
       <!--ログインしていた場合表示されるヘッダー-->
-      <ul>
-            <% if user_signed_in? %>
-              <li>
-                <%= link_to "マイページ", users_path %>
-              </li>
-              <li>
-                <%= link_to "タイムライン", posts_path %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
-      <!--ログインしていない場合表示されるヘッダー-->
-            <% else %>
-              <li>
-                <%= link_to "ログイン", new_user_session_path %>
-              </li>
-              <li>
-                <%= link_to "新規会員登録", new_user_registration_path %>
-              </li>
-            <% end %>
-      </ul>
+        <ul class="list-unstyled list-inline">
+              <% if user_signed_in? %>
+                <li class="list-inline-item">
+                  <%= link_to "マイページ", users_path, class: 'text-light' %>
+                </li>
+                <li class="list-inline-item">
+                  <%= link_to "タイムライン", posts_path, class: 'text-light' %>
+                </li>
+                <li class="list-inline-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-light'  %>
+                </li>
+        <!--ログインしていない場合表示されるヘッダー-->
+              <% else %>
+                <li class="list-inline-item">
+                  <%= link_to "ログイン", new_user_session_path, class: 'text-light' %>
+                </li>
+                <li class="list-inline-item">
+                  <%= link_to "新規会員登録", new_user_registration_path, class: 'text-light' %>
+                </li>
+              <% end %>
+        </ul>
+      </nav>
     </header>
     <%= yield %>
+    <footer>
+      
+    </footer>
   </body>
 </html>

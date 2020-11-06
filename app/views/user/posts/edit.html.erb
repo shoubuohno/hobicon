@@ -1,2 +1,7 @@
-<h1>User::Posts#edit</h1>
-<p>Find me in app/views/user/posts/edit.html.erb</p>
+<h1>投稿編集</h1>
+<%= form_for @post do |f| %>
+    <%= attachment_image_tag @post, :image, :fill, 80, 80, format: 'jpeg' %>
+    <%= f.attachment_field :image %>
+    <%= f.text_area :body %>
+    <%= f.submit "編集する" %>
+<% end %>
