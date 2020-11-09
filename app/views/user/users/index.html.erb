@@ -6,4 +6,5 @@
   <%= link_to followers_user_path(current_user.id) do %>
    <%= current_user.followers.count %>フォロワー
   <% end %>
+  <%= link_to 'マッチした人一覧', matching_user_path(current_user.id) %>
 <%= link_to "プロフィール", user_path(current_user.id) %>

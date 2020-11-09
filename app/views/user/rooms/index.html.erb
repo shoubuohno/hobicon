@@ -1,0 +1,27 @@
+<h1>チャット一覧</h1>
+<% @another_entries.each do |e| %>
+	<table class="table table-striped">
+		<tr>
+			<td>
+				<%= link_to room_path(e.room.id) do %>
+					<%= e.user.user_name %>
+				<% end %>
+			</td>
+			<td>
+                <% c = ChatMessage.find_by(id: e.room.chat_message_ids.last) %>
+				<%# chat = ChatMessage.find_by(id: e.room.chat_message_ids.last).message %>
+				<% if c.present? %>
+				<%= truncate(c.message, length: 10) %>
+				<% end %>
+			</td>
+			<td>
+				<h6 style="color: #C0C0C0;"><%= e.updated_at.strftime("%Y/%m/%d %H:%M") %></h6>
+			</td>
+			<td>
+				<%= link_to room_path(e.room.id), method: :delete do %>
+                    <i class="fas fa-trash" style="color: black;"></i>
+                <% end %>
+			</td>
+		</tr>
+	</table>
+<% end %>

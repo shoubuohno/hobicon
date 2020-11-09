@@ -1,5 +1,5 @@
 <h1>プロフィール</h1>
-<!-- 画像スライダー機能-->
+<%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
 <h4>ユーザー名 : <%= @user.user_name %></h4>
 <% now_age = (Date.today.strftime('%Y%m%d').to_i - @user.age.strftime('%Y%m%d').to_i) / 10000 %>
 <p>年齢 : <%= now_age %></p>
@@ -13,6 +13,24 @@
 
 <!-- フォロー機能rendar -->
 <%= render 'follow_form' %>
+
+<!--chat機能（DM）-->
+<% if user_signed_in? %>
+	<% unless @user.id == current_user.id %>
+		<% if @is_room == true %>
+			<%= link_to room_path(@room_id) do %>
+			   <button id="dm_submit"><i class="fas fa-envelope"></i></button>
+			<% end %>
+		<% else %>
+			<%= form_for @room, url: rooms_path do |f| %>
+				<%= fields_for @entry do |e| %>
+					<%= e.hidden_field :user_id, :value => @user.id %>
+				<% end %>
+					<button type="submit" id="dm_submit"><i class="fas fa-envelope"></i></button>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>
 
 <!--自分のプロフィールの場合のみ表示する-->
 <% if @user.id == current_user.id %>

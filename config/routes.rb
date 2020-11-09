@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         get :following, :followers
+        get :matching
       end
     end
+    resources :rooms, only: [:index, :show, :create, :destroy]
     resources :relationships, only: [:create, :destroy]
     resources :posts do
    	  resources :post_goods, only: [:create, :destroy]

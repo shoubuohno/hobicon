@@ -27,6 +27,9 @@
                 </li>
         <!--ログインしていない場合表示されるヘッダー-->
               <% else %>
+              　<li class="list-inline-item">
+                  <%= link_to "TOP", root_path, class: 'text-light' %>
+                </li>
                 <li class="list-inline-item">
                   <%= link_to "ログイン", new_user_session_path, class: 'text-light' %>
                 </li>
@@ -39,7 +42,6 @@
     </header>
     <%= yield %>
     <footer>
-      
     </footer>
   </body>
 </html>
