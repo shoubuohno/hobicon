@@ -1,6 +1,7 @@
 <h1>投稿フォーム</h1>
 <%= form_for @post do |f| %>
 <%= f.attachment_field :image %>
+<%= f.text_field :hobby_name %>
 <%= f.text_area :body %>
 <%= f.submit "投稿する" %>
 <% end %>

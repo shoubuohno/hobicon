@@ -1,4 +1,13 @@
-<h1>マッチした人一覧</h1>
-<% @users.each do |macth| %>
-	<%= macth.user_name %>
-<% end %>
+<dev class="container-fluid">
+	<div class="row">
+		<div class="col-3 text-center">
+			<%= render 'sidemenu' %>
+		</div>
+		<div class="col-9">
+			<h1>マッチした人一覧</h1>
+			<% @users.each do |macth| %>
+			<%= render 'list', user: macth %>
+			<% end %>
+        </div>
+	</div>
+</dev>

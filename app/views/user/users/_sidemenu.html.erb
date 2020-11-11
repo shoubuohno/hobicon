@@ -1,0 +1,27 @@
+<table>
+				<tr>
+					<td class="pt-4"><%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
+					<%= current_user.user_name %></td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+				    <h4>
+					  <%= link_to "プロフィール", user_path(current_user.id), class:"text-secondary" %>
+					</h4>
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+						<h4>
+						  <%= link_to 'チャット', rooms_path(current_user), class:"text-secondary" %>
+						</h4>
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+						<h4>
+						  <%= link_to '投稿する', new_post_path, class:"text-secondary" %>
+						</h4>
+					</td>
+				</tr>
+</table>

@@ -2,6 +2,9 @@
 <!-- 投稿内容　-->
 <%= @post.created_at.strftime('%Y/%m/%d') %><br />
 <%= attachment_image_tag @post, :image, :fill, 80, 80, format: 'jpeg' %>
+<% @post_hobbies.each do |hobby| %>
+ <span><%= hobby.hobby_name %></span>
+<% end %>
 <%= @post.user.user_name %>
 <%= @post.body %>
 <!-- タグ付けされた趣味-->

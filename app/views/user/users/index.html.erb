@@ -1,10 +1,63 @@
-<h1>マイページ</h1>
-<!--フォロー、フォロワーの人数表示-->
-  <%= link_to following_user_path(current_user.id) do %>
-   <%= current_user.followings.count %>フォロー
-  <% end %>
-  <%= link_to followers_user_path(current_user.id) do %>
-   <%= current_user.followers.count %>フォロワー
-  <% end %>
-  <%= link_to 'マッチした人一覧', matching_user_path(current_user.id) %>
-<%= link_to "プロフィール", user_path(current_user.id) %>
+<div class="container">
+
+	<div class="row d-flex align-items-center justify-content-center pt-5">
+	  	<div class="text-center">
+	  		<h2 Class="border border-dark rounded">マイページ</h2>
+			<table>
+				<tr>
+					<td class="pt-4"><%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
+					<%= current_user.user_name %></td>
+				</tr>
+				<tr>
+				  <td  class="pt-4">
+						<!--フォロー、フォロワーの人数表示-->
+				  <h4><%= link_to following_user_path(current_user.id), class:"text-secondary" do %>
+				   <%= current_user.followings.count %>フォロー
+				  <% end %>
+				  <%= link_to followers_user_path(current_user.id), class:"pl-3 text-secondary" do %>
+				   <%= current_user.followers.count %>フォロワー
+				  <% end %></h4>
+						</td>
+				</tr>
+				<!-- マッチした人数のカウント -->
+				<tr>
+					<td class="pt-4">
+						<h4>
+						<%= link_to  matching_user_path(current_user.id), class:"text-secondary" do %>
+						   <%= (current_user.followings & current_user.followers).count %>マッチ
+						<% end %>
+					    </h4>
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+				    <h4>
+					  <%= link_to "プロフィール", user_path(current_user.id), class:"text-secondary" %>
+					</h4>
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+						<h4>
+						  <%= link_to 'チャット', rooms_path(current_user), class:"text-secondary" %>
+						</h4>
+					</td>
+				</tr>
+				<tr>
+					<td class="pt-4">
+						<h4>
+						  <%= link_to '投稿する', new_post_path, class:"text-secondary" %>
+						</h4>
+					</td>
+				</tr>
+			</table>
+		  </div>
+    </div>
+</div>
+
+
+
+
+
+
+

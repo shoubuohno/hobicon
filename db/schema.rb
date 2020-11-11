@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_062541) do
   end
 
   create_table "hobbies", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "hobby_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,9 +36,12 @@ ActiveRecord::Schema.define(version: 2020_11_07_062541) do
   create_table "hobby_maps", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.integer "hobby_id", null: false
+    t.integer "hobby_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hobby_id"], name: "index_hobby_maps_on_hobby_id"
+    t.index ["post_id"], name: "index_hobby_maps_on_post_id"
+    t.index ["user_id"], name: "index_hobby_maps_on_user_id"
   end
 
   create_table "post_comments", force: :cascade do |t|

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   scope module: 'user' do
   	root :to => 'tops#top'
+    get 'user_list' => 'users#user_list'
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         get :following, :followers

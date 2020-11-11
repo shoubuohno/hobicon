@@ -1,65 +1,65 @@
 <div class="container">
- <h2 class="text-center">新規会員登録</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "user/users/shared/error_messages", resource: resource %>
-   <table>
-      <!-- ユーザーネーム -->
-      <div class="field">
-          <tr>
-              <th><%= f.label :ユーザー名 %></th>
-            <td><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
-          </tr>
-        </div>　
-
-    　
-      <!-- 性別 -->
-      <div class="field">
-        <tr>
-          <th><%= f.label :性別 %></th>
-          <td><%= f.radio_button :sex, :男性, autofocus: true, autocomplete: "sex" %>
-            <%= f.label :男性 %>
-           <%= f.radio_button :sex, :女性, autofocus: true, autocomplete: "sex" %>
-            <%= f.label :女性 %>
-          </td>
-        </tr>
-      </div>
-      <!-- 年齢 -->
-      <div class="field">
-        <tr>
-          <th><%= f.label :生年月日 %></th>
-          <td><%= f.date_select :age,  use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(2000, 1, 1) %></td>
-        </tr>
-      </div>
-
-      <tr>
+     <h1 class="text-center">新規会員登録</h1>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "user/users/shared/error_messages", resource: resource %>
+      <div class="mx-auto pt-4" style="width: 500px;">
+       <table>
+          <!-- ユーザーネーム -->
           <div class="field">
-            <th><%= f.label :メールアドレス %></th>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+              <tr>
+                  <th class="pt-4"><%= f.label :ユーザー名 %></th>
+                <td class="pt-4 pl-3"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", class:"form-control" %></td>
+              </tr>
+            </div>　
+
+        　
+          <!-- 性別 -->
+          <div class="field">
+            <tr>
+              <th  class="pt-4"><%= f.label :性別 %></th>
+              <td class="pt-4 pl-3"><%= f.radio_button :sex, :男性, autofocus: true, autocomplete: "sex", class:"form-check-input" %>
+                <%= f.label :男性 %>
+               <%= f.radio_button :sex, :女性, autofocus: true, autocomplete: "sex", class:"form-check-input" %>
+                <%= f.label :女性 %>
+              </td>
+            </tr>
           </div>
-      </tr>
+          <!-- 年齢 -->
+          <div class="field">
+            <tr>
+              <th  class="pt-4"><%= f.label :生年月日 %></th>
+              <td class="pt-4 pl-3"><%= f.date_select :age,  use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(2000, 1, 1), class:"custom-select" %></td>
+            </tr>
+          </div>
 
-      <div class="field">
-        <tr>
-          <th><%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上設定してください)</em>
-          <% end %></th>
-          <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-        </tr>
+          <tr>
+              <div class="field">
+                <th  class="pt-4"><%= f.label :メールアドレス %></th>
+                <td class="pt-4 pl-3"><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control mr-4" %></td>
+              </div>
+          </tr>
+
+          <div class="field">
+            <tr>
+              <th  class="pt-4"><%= f.label :パスワード %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %>文字以上設定してください)</em>
+              <% end %></th>
+              <td class="pt-4 pl-3"><%= f.password_field :password, autocomplete: "new-password", class:"form-control" %></td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <th  class="pt-4"><%= f.label :"パスワード（確認用）" %></th>
+              <td class="pt-4 pl-3"><%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %></td>
+            </tr>
+          </div>
+       </table>
+
+          <div class="text-center pt-5">
+            <%= f.submit "登録する", class:"btn btn-outline-success btn-lg" %>
+          </div>
+        <% end %>
       </div>
-
-      <div class="field">
-        <tr>
-          <th><%= f.label :"パスワード（確認用）" %></th>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-        </tr>
-      </div>
-   </table>
-
-      <div>
-        <%= f.submit "登録する", class:"btn btn-outline-success btn-lg" %>
-      </div>
-    <% end %>
-
 </div>

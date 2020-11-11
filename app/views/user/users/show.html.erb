@@ -1,38 +1,100 @@
-<h1>プロフィール</h1>
-<%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
-<h4>ユーザー名 : <%= @user.user_name %></h4>
-<% now_age = (Date.today.strftime('%Y%m%d').to_i - @user.age.strftime('%Y%m%d').to_i) / 10000 %>
-<p>年齢 : <%= now_age %></p>
-<p>性別: <%= @user.sex %>
-</p>
-<h4>住んでいる地域 : <%= @user.area %></h4>
-
-<!--趣味のタグ付け-->
-<h4>自己紹介</h4>
-<%= @user.introduction %>
-
-<!-- フォロー機能rendar -->
-<%= render 'follow_form' %>
-
-<!--chat機能（DM）-->
-<% if user_signed_in? %>
-	<% unless @user.id == current_user.id %>
-		<% if @is_room == true %>
-			<%= link_to room_path(@room_id) do %>
-			   <button id="dm_submit"><i class="fas fa-envelope"></i></button>
-			<% end %>
-		<% else %>
-			<%= form_for @room, url: rooms_path do |f| %>
-				<%= fields_for @entry do |e| %>
-					<%= e.hidden_field :user_id, :value => @user.id %>
+<div class="container">
+	<div class="row">
+	  <div class="col-5">
+	  	  <h2 class="text-center">プロフィール</h2>
+	  	<div class="sidebar_fixed">
+	  	 <div class="mx-auto">
+		 <table>
+		  <tr>
+			<td><%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
+			    <%= @user.user_name %>
+			</td>
+		  </tr>
+		  <tr>
+			　<% now_age = (Date.today.strftime('%Y%m%d').to_i - @user.age.strftime('%Y%m%d').to_i) / 10000 %>
+			<th>年齢 :</th><td><%= now_age %></td>
+		  </tr>
+		  <tr>
+		  	<th>性別:</th>
+			<td><%= @user.sex %></td>
+		  </tr>
+		  <tr>
+		  	<th>住んでいる地域 : </th><td><%= @user.area %></td>
+		  </tr>
+		  <tr>
+		  	<td>
+			<!--趣味のタグ付け-->
+		    </td>
+		  </tr>
+		  <tr>
+		  	<td>
+			<h4>自己紹介</h4>
+			<%= @user.introduction %>
+			</td>
+		  </tr>
+		  <tr>
+		  	<td>
+             <!-- フォロー機能rendar -->
+			<%= render 'follow_form' %>
+		    </td>
+		  </tr>
+		  <tr>
+		  	<td>
+				<!--chat機能（DM）-->
+				<% if user_signed_in? %>
+					<% unless @user.id == current_user.id %>
+						<% if @is_room == true %>
+							<%= link_to room_path(@room_id) do %>
+							   <button id="dm_submit"><i class="fas fa-envelope"></i></button>
+							<% end %>
+						<% else %>
+							<%= form_for @room, url: rooms_path do |f| %>
+								<%= fields_for @entry do |e| %>
+									<%= e.hidden_field :user_id, :value => @user.id %>
+								<% end %>
+									<button type="submit" id="chat_submit"><i class="fas fa-envelope"></i></button>
+							<% end %>
+						<% end %>
+					<% end %>
 				<% end %>
-					<button type="submit" id="dm_submit"><i class="fas fa-envelope"></i></button>
+		    </td>
+		  </tr>
+		</table>
+			<!--自分のプロフィールの場合のみ表示する-->
+			<% if @user.id == current_user.id %>
+			  <p><%= link_to "編集する", edit_user_path(current_user.id) %></p>
 			<% end %>
-		<% end %>
-	<% end %>
-<% end %>
+		 </div>
+		</div>
+	  </div>
+	  <div class="col-7">
+	  	    <table>
+				<tbody>
+					<% @user_posts.each do |cp| %>
+					     <tr>
+					     	<td>
+					     	  <div class="card" style="width: 28rem;">
+					  	       <div class="card-body">
+					     		<%= link_to post_path(cp.id) do %><%= attachment_image_tag cp, :image, :fill, 60, 60, format: 'jpeg',class:"card-img-top" %>
+								<% end %>
+							    <%= link_to post_path(cp.id), class:"card-subtitle" do %>
+								    <%= cp.body %>
+								<% end %>
+							    <%= link_to user_path(cp.id), class:"card-link" do %>
+								   <%= cp.user.user_name %>
+								<% end %>
+								<div class="card-text">
+								  <%= cp.post_comments.count %>コメント
+						          <%= cp.post_goods.count %> いいね
+						        </div>
+						       </div>
+					          </div>
+						    </td>
+					     </tr>
+					<% end %>
+				</tbody>
+			</table>
+        </div>
+	</div>
+</div>
 
-<!--自分のプロフィールの場合のみ表示する-->
-<% if @user.id == current_user.id %>
-  <p><%= link_to "編集する", edit_user_path(current_user.id) %></p>
-<% end %>

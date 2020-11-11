@@ -20,6 +20,9 @@
                   <%= link_to "マイページ", users_path, class: 'text-light' %>
                 </li>
                 <li class="list-inline-item">
+                  <%= link_to '趣味仲間を探す', user_list_path, class: 'text-light' %>
+                </li>
+                <li class="list-inline-item">
                   <%= link_to "タイムライン", posts_path, class: 'text-light' %>
                 </li>
                 <li class="list-inline-item">
@@ -42,6 +45,7 @@
     </header>
     <%= yield %>
     <footer>
+      <nav class="navbar fixed-bottom navbar-dark bg-dark">
     </footer>
   </body>
 </html>

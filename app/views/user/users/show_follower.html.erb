@@ -1,9 +1,13 @@
-<% @user.followers.each do |user| %>
-<table>
-<tr>
-  <td>  <%= user.user_name %> </td>
-  <td><%= link_to '詳細', user_path(user) %></td>
-</tr>
-
-</table>
-<% end %>
+<dev class="container-fluid">
+	<div class="row">
+		<div class="col-3 text-center">
+			<%= render 'sidemenu' %>
+		</div>
+		<div class="col-9">
+			<h1>フォロワーリスト</h1>
+			<% @user.followers.each do |user| %>
+			<%= render 'list', user: user %>
+			<% end %>
+		</div>
+	</div>
+</dev>

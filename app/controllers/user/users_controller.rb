@@ -2,6 +2,10 @@ class User::UsersController < ApplicationController
   def index
   end
 
+  def user_list
+    @users = User.all
+  end
+
   def following
     @user = User.find(params[:id])
     @users = @user.followings
@@ -20,6 +24,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_posts = @user.posts
     #チャット機能
     if user_signed_in?
       @current_user_entry = Entry.where(user_id: current_user.id)
