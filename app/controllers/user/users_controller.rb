@@ -1,4 +1,6 @@
 class User::UsersController < ApplicationController
+  before_action :user_check, only: [:matching, :following, :followers, :update, :edit]
+
   def index
   end
 
@@ -24,7 +26,10 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_hobbies = @user.hobbies
     @user_posts = @user.posts
+    #byebug
+    #@is_match = current_user.following?(@user) && @user.following?(current_user)
     #チャット機能
     if user_signed_in?
       @current_user_entry = Entry.where(user_id: current_user.id)
@@ -48,11 +53,14 @@ class User::UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
+    @hobby_list = @user.hobbies.pluck(:hobby_name).join(nil)
   end
 
   def update
   	@user = User.find(params[:id])
-    @user.update(user_params)
+    hobby_list = params[:user][:hobby_name].split(nil)
+    @user.update_attributes(user_params)
+    @user.save_hobby(hobby_list)
     redirect_to user_path(@user.id)
   end
 
@@ -60,5 +68,13 @@ class User::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:user_name, :image, :sex, :area, :introduction)
+  end
+
+  def user_check
+    @user = User.find(params[:id])
+
+        if @user.id != current_user.id
+          redirect_to users_path
+        end
   end
 end

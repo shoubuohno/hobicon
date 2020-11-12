@@ -14,9 +14,11 @@
  */
 
 @import "bootstrap";
+@import "font-awesome";
 
 body {
 	padding-top: 90px;
+	padding-bottom: 90px;
 }
 
 .img_prev:hover {
@@ -29,3 +31,4 @@ footer {
 	width: 100%;
 	height: 60ox;
 }
+

@@ -1,29 +1,15 @@
-<%= link_to "投稿する", new_post_path %>
-<h1>タイムライン</h1>
-
-<table>
-	<tbody>
-		<% @posts.each do |post| %>
-		     <tr>
-		     	<td>
-		     	  <div class="card">
-		  	       <div class="card-body">
-		     		<%= link_to post_path(post.id) do %><%= attachment_image_tag post, :image, :fill, 60, 60, format: 'jpeg',class:"card-img-top" %>
-					<% end %>
-				    <%= link_to post_path(post.id), class:"card-subtitle" do %>
-					    <%= post.body %>
-					<% end %>
-				    <%= link_to user_path(post.user.id), class:"card-link" do %>
-					   <%= post.user.user_name %>
-					<% end %>
-					<div class="card-text">
-					  <%= post.post_comments.count %>コメント
-			          <%= post.post_goods.count %> いいね
-			        </div>
-			       </div>
-		          </div>
-			    </td>
-		     </tr>
-		<% end %>
-	</tbody>
-</table>
+<dev class="container">
+    <div class="row">
+      <div class="col-5">
+      	<%= render 'user/users/sidemenu' %>
+      </div>
+      <div class="col-7">
+       <h1>タイムライン</h1>
+       <div style="overflow:auto; height: 500px;">
+    		<% @posts.each do |post| %>
+    		     <%= render 'timeline', post: post %>
+    		<% end %>
+       </div>
+	  </div>
+	</div>
+</dev>

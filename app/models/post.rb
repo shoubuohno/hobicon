@@ -17,14 +17,14 @@ class Post < ApplicationRecord
     current_hobbies = self.hobbies.pluck(:hobby_name) unless self.hobbies.nil?
     old_hobbies = current_hobbies - sent_hobbies
     new_hobbies = sent_hobbies - current_hobbies
-　
+
     old_hobbies.each do |old|
-      self.post_hobbies.delete PostHobby.find_by(hobby_name: old)
+      self.hobbies.delete Hobby.find_by(hobby_name: old)
     end
-　
+
     new_hobbies.each do |new|
-      new_post_hobby = PostHobby.find_or_create_by(hobby_name: new)
-      self.post_hobbies << new_post_hobby
+      new_hobby = Hobby.find_or_create_by(hobby_name: new)
+      self.hobbies << new_hobby
     end
    end
 

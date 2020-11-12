@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_062541) do
+ActiveRecord::Schema.define(version: 2020_11_12_065224) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.string "message"
@@ -34,14 +34,12 @@ ActiveRecord::Schema.define(version: 2020_11_07_062541) do
   end
 
   create_table "hobby_maps", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "post_id"
     t.integer "hobby_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hobby_id"], name: "index_hobby_maps_on_hobby_id"
     t.index ["post_id"], name: "index_hobby_maps_on_post_id"
-    t.index ["user_id"], name: "index_hobby_maps_on_user_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -81,6 +79,15 @@ ActiveRecord::Schema.define(version: 2020_11_07_062541) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_hobby_maps", force: :cascade do |t|
+    t.integer "hobby_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hobby_id"], name: "index_user_hobby_maps_on_hobby_id"
+    t.index ["user_id"], name: "index_user_hobby_maps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,24 @@
+<table>
+	<tbody>
+		     <tr>
+		     	<td>
+		     	  <div class="card" style="width: 40rem;">
+		  	       <div class="card-body">
+		     		<%= link_to user_path(post) do %><%= attachment_image_tag post, :image, :fill, 300, 400, format: 'jpeg',class:"card-img-top", :width => "300", :height => "400" %>
+					<% end %>
+				    <%= link_to post_path(post.id), class:"card-subtitle" do %>
+					    <%= post.body %>
+					<% end %>
+				    <%= link_to user_path(post.user.id), class:"card-link" do %>
+					   <%= post.user.user_name %>
+					<% end %>
+					<div class="card-text">
+					  <%= post.post_comments.count %>コメント
+			          <%= post.post_goods.count %> いいね
+			        </div>
+			       </div>
+		          </div>
+			    </td>
+		     </tr>
+	</tbody>
+</table>

@@ -5,9 +5,11 @@
 		</div>
 		<div class="col-9">
 			<h1>フォローリスト</h1>
-			<% @user.followings.each do |user| %>
-			<%= render 'list', user: user %>
-			<% end %>
+			<div style="overflow:auto; height: 500px;">
+			 <% @user.followings.each do |user| %>
+			 <%= render 'list', user: user %>
+			 <% end %>
+		    </div>
 		</div>
 	</div>
 </dev>

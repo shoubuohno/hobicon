@@ -1,14 +1,24 @@
 <table class="table table-hover">
-<tr>
-  <td>
-  	  <%= link_to user_path(user), class:"text-secondary" do %>
+	<thead>
+	</thead>
+	<tbody>
+		<tr>
+		  <td>
+		  <%= link_to user_path(user), class:"text-secondary" do %>
 	  	  <%= attachment_image_tag user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
 	      <%= user.user_name %>
-	  <% end %>
-  </td>
-  <td></td>
-  <td>
-  </td>
-</tr>
-
+	      <% end %>
+		  <!-- 年齢 -->
+		  <% now_age = (Date.today.strftime('%Y%m%d').to_i - user.age.strftime('%Y%m%d').to_i) / 10000 %>
+		  <%= now_age %>
+		  <!-- 性別 -->
+		  <%= user.sex %>
+		  </td>
+		  <!-- 居住地 -->
+		  <td><%= user.area %></td>
+		  <!-- 趣味 -->
+		  <td>
+	      </td>
+		</tr>
+	</tbody>
 </table>

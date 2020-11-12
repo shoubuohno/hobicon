@@ -23,7 +23,6 @@ class User < ApplicationRecord
 	has_many :posts, dependent: :destroy
 	has_many :post_comments, dependent: :destroy
 	has_many :post_goods, dependent: :destroy
-	has_many :hobby_maps, dependent: :destroy
 	has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
 	has_many :followings, through: :following_relationships
 	has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
@@ -31,6 +30,8 @@ class User < ApplicationRecord
     has_many :entries
     has_many :chat_messages
     has_many :rooms, through: :entries
+    has_many :user_hobby_maps, dependent: :destroy
+    has_many :hobbies, through: :user_hobby_maps
 
 	def following?(other_user)
 		following_relationships.find_by(following_id: other_user.id)
@@ -43,4 +44,19 @@ class User < ApplicationRecord
 	def unfollow!(other_user)
 		following_relationships.find_by(following_id: other_user.id).destroy
 	end
+
+	def save_hobby(sent_hobbies)
+	    current_hobbies = self.hobbies.pluck(:hobby_name) unless self.hobbies.nil?
+	    old_hobbies = current_hobbies - sent_hobbies
+	    new_hobbies = sent_hobbies - current_hobbies
+
+	    old_hobbies.each do |old|
+	      self.hobbies.delete Hobby.find_by(hobby_name: old)
+	    end
+
+	    new_hobbies.each do |new|
+	      new_hobby = Hobby.find_or_create_by(hobby_name: new)
+	      self.hobbies << new_hobby
+	    end
+    end
 end

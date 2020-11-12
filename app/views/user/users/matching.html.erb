@@ -5,9 +5,11 @@
 		</div>
 		<div class="col-9">
 			<h1>マッチした人一覧</h1>
-			<% @users.each do |macth| %>
-			<%= render 'list', user: macth %>
-			<% end %>
+			<div style="overflow:auto; height: 500px;">
+				<% @users.each do |macth| %>
+				<%= render 'list', user: macth %>
+				<% end %>
+			<div style="overflow:auto; height: 500px;">
         </div>
 	</div>
 </dev>

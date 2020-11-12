@@ -5,11 +5,13 @@
 		</div>
 		<div class="col-9">
 		  <h2>趣味仲間を探す</h2>
-			<% @users.each do |user| %>
-				 <% if user.id != current_user.id %>
-			        <%= render 'list', user: user %>
-			     <% end %>
-		    <% end %>
+		   <div style="overflow:auto; height: 500px;">
+				<% @users.each do |user| %>
+					 <% if user.id != current_user.id %>
+				        <%= render 'list', user: user %>
+				     <% end %>
+			    <% end %>
+			</div>
 		</div>
 	</div>
 </dev>

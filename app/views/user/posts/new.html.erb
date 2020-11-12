@@ -1,7 +1,29 @@
-<h1>投稿フォーム</h1>
-<%= form_for @post do |f| %>
-<%= f.attachment_field :image %>
-<%= f.text_field :hobby_name %>
-<%= f.text_area :body %>
-<%= f.submit "投稿する" %>
-<% end %>
+<div class="container">
+  <div class="row">
+  	<div class="col-3">
+  	</div>
+  	<div class="col-6">
+		<h1 class="text-center">投稿フォーム</h1>
+		<%= form_with(model: @post, url: posts_path, local: true) do |f| %>
+
+		  <div class="text-center">
+		  	 <div class="form-group">
+		  	 	<div class="pt-5">
+		  	 	   <%= f.attachment_field :image, class: 'img_field', style: 'display:none' %>
+			       <%= attachment_image_tag @post, :image, :fill, 300, 300, fallback: 'm_e_others_500.png', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev', :width => "300", :height => "300" %>
+			    </div>
+			    <div class="pt-4">
+				   <h4>趣味</h4>
+				   <%= f.text_field :hobby_name, class:"form-control", placeholder:"※複数タグ付けする場合は趣味と趣味の間にスペースを入れてください"  %>
+				</div>
+				<div class="pt-4">
+				   <h4>内容</h4>
+				   <%= f.text_area :body, class:"form-control pb-5" %>
+				</div>
+			  </div>
+			      <%= f.submit "投稿", class:"btn btn-outline-success btn-lg mt-5" %>
+		  </div>
+		<% end %>
+	</div>
+  </div>
+</div>

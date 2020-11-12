@@ -1,4 +1,6 @@
 class User::RoomsController < ApplicationController
+
+
 	def index
 		@user = current_user
 		@current_entries = current_user.entries
@@ -31,4 +33,5 @@ class User::RoomsController < ApplicationController
 		room.destroy
 		redirect_to rooms_path
 	end
+
 end

@@ -68,6 +68,8 @@ gem "refile-mini_magick"
 #bootstrapの追加
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+#FontAwesomeの導入
+gem 'font-awesome-rails'
 #環境変数化
 gem 'dotenv-rails'
 group :production do
