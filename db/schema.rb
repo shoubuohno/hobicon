@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2020_11_12_065224) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "hobby_maps", force: :cascade do |t|
+    t.integer "post_id"
+    t.bigint "hobby_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hobby_id"], name: "index_hobby_maps_on_hobby_id"
+    t.index ["post_id"], name: "index_hobby_maps_on_post_id"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
@@ -54,15 +63,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_065224) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "hobby_maps", force: :cascade do |t|
-    t.integer "post_id"
-    t.bigint "hobby_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hobby_id"], name: "index_hobby_maps_on_hobby_id"
-    t.index ["post_id"], name: "index_hobby_maps_on_post_id"
   end
 
   create_table "relationships", force: :cascade do |t|
