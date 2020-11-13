@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_065224) do
   end
 
   create_table "hobby_maps", force: :cascade do |t|
-    t.bigint "post_id"
+    t.integer "post_id"
     t.integer "hobby_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
