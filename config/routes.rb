@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :posts do
    	  resources :post_goods, only: [:create, :destroy]
    	  resources :post_comments, only: [:create, :destroy]
-   end
+    end
   end
 
 

@@ -4,7 +4,7 @@
       	<%= render 'user/users/sidemenu' %>
       </div>
       <div class="col-7">
-       <h1>タイムライン</h1>
+       <h1 class="pb-4">タイムライン</h1>
        <div style="overflow:auto; height: 500px;">
     		<% @posts.each do |post| %>
     		     <%= render 'timeline', post: post %>
