@@ -1,3 +1,4 @@
+<!-- ログイン前TOP画面 -->
 <div class="containar">
   <h1 class="text-center">Hobby Connectionへようこそ</h1>
   <div class="pt-5">
@@ -8,10 +9,12 @@
   <div class="pt-4">
 	<h5 class="text-center"> Hobby connectionであなたにとって新しい経験や知識、仲間を見つけてみませんか？</h5>
   </div>
+  <!-- 新規登録画面リンク -->
   <div class="pt-5">
 	<h5 class="text-center">　まだ登録がお済でない方はコチラから↓<br />
 	  <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-success btn-lg" %></h5>
   </div>
+  <!-- ログイン画面リンク -->
   <div class="pt-5">
 	<h5 class="text-center">　既に登録をされている方はコチラから↓<br />
 	  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-lg" %>
