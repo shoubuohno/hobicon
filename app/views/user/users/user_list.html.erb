@@ -1,3 +1,4 @@
+<!-- 自分以外のユーザー一覧 -->
 <dev class="container-fluid">
 	<div class="row">
 		<div class="col-3 text-center">
@@ -7,6 +8,7 @@
 		  <h2>趣味仲間を探す</h2>
 		   <div style="overflow:auto; height: 500px;">
 				<% @users.each do |user| %>
+					 <!-- ログインユーザーは表示させない -->
 					 <% if user.id != current_user.id %>
 				        <%= render 'list', user: user %>
 				     <% end %>
