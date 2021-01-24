@@ -1,3 +1,4 @@
+<!-- 投稿フォーム -->
 <div class="container">
   <div class="row">
   	<div class="col-3">
@@ -10,6 +11,7 @@
 		  	 <div class="form-group">
 		  	 	<div class="pt-5">
 		  	 	   <%= f.attachment_field :image, class: 'img_field', style: 'display:none' %>
+		  	 	   <!-- 画像プレビュー機能　image_preview.jsから読み込み -->
 			       <%= attachment_image_tag @post, :image, :fill, 300, 300, fallback: 'm_e_others_500.png', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev', :width => "300", :height => "300" %>
 			    </div>
 			    <div class="pt-4">

@@ -1,3 +1,4 @@
+<!-- 投稿詳細 -->
 <div class="container">
 	<div class="row">
 	  <div class="col-4">
@@ -5,28 +6,39 @@
 	  <div class="col-8">
 		<!-- 投稿内容　-->
 		<div class="pb-4">
+		<!-- 自身の投稿にのみ表示させる -->
 		<% if @post.user == current_user %>
 		    <%= link_to '編集', edit_post_path(@post), class:"btn btn-outline-success" %>
 		    <%= link_to '削除', post_path(@post), method: :delete, class:"btn btn-outline-danger" %><br>
 		    <% end %>
 		</div>
+		<!-- 投稿画像 -->
 		<%= attachment_image_tag @post, :image,  format: 'jpeg', :width => "500", :height => "400" %><br >
+		<!-- 投稿日時 -->
 		<%= @post.created_at.strftime('%Y/%m/%d') %>
+		<!-- タグ付けされた趣味、ワード取得し全部表示 -->
 		<% @post_hobbies.each do |hobby| %>
 		 <span><%= hobby.hobby_name %></span><br >
 		<% end %>
+	    <!-- 投稿したユーザーの画像 -->
 		<%= attachment_image_tag @post.user, :image, :fill, 100, 100, fallback: 'no_image.jpg', :width => "80", :height => "80" %>
+		<!-- 投稿したユーザーの名前 -->
 		<%= @post.user.user_name %><br >
+		<!-- 投稿内容 -->
 		<%= @post.body %>
 		<!-- いいね機能 -->
+		<!-- current_userがいいねをしていたら -->
 		<% if @post.post_gooded_by?(current_user) %>
+		  <!-- いいね取り消し -->
 		  <%= link_to post_post_good_path(@post), method: :delete do %>
 		   <!-- ハートマークcss-->
 		   <%= @post.post_goods.count %>
 		    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
 		  <% end %>
 		<% else %>
+		  <!-- いいねしていなかったらいいねをつける -->
 		  <%= link_to post_post_goods_path(@post), method: :post do %>
+		    <!-- いいねの数 -->
 		    <%= @post.post_goods.count %>
 		    <i class="fa fa-heart-o" aria-hidden="true"></i>
 		  <% end %>
@@ -34,7 +46,6 @@
 		   <!-- コメント数 -->
 		   	<%= @post.post_comments.count %>コメント
 	   </div>
-		<!-- タグ付けされた趣味-->
 	</div>
     <div class="row pt-5">
       <div class="col-4">
@@ -53,6 +64,7 @@
 						</td>
 						<td><%= post_comment.comment %></td>
 						<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+						<!-- そのコメントをしたユーザーにしか見えない -->
 						<td><% if post_comment.user == current_user %>
 							  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"text-danger" %><% end %></td>
 					</tr>

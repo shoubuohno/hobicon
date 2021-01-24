@@ -1,11 +1,13 @@
+<!-- ユーザー情報編集画面 -->
 <div class="container">
 	<div class="row d-flex align-items-center justify-content-center pt-2">
 		<div class="text-center">
 			<h1>プロフィール編集</h1>
 			<%= form_with model: @user, local: true do |f| %>
-			 <!--画像-->
 		   <div class="pt-4">
+		   	 <!-- 画像ファイルアップロード -->
 			 <%= f.attachment_field :image, class: 'img_field', style: 'display:none' %>
+			 <!-- 画像プレビュー機能　image_preview.jsから読み込み -->
 			 <%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: 'no_image.jpg', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev', :width => "300", :height => "300" %>
 		   </div>
 			<div class="pt-4">

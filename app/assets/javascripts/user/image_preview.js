@@ -1,3 +1,4 @@
+// turbolinks:loadでページリロードせずに画像をプレビュー表示
 $(document).on('turbolinks:load', function() {
   $(function () {
     function readURL(input) {
