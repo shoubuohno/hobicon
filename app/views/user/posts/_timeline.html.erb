@@ -2,6 +2,7 @@
 	<tbody>
 		     <tr>
 		     	<td>
+		     	<!-- レイアウトにbootstrapのcard使用 -->
 		     	  <div class="card" style="width: 40rem;">
 		  	       <div class="card-body">
 		     		<%= link_to user_path(post) do %><%= attachment_image_tag post, :image, :fill, 300, 400, format: 'jpeg',class:"card-img-top", :width => "300", :height => "400" %>
@@ -13,6 +14,7 @@
 					   <%= post.user.user_name %>
 					<% end %>
 					<div class="card-text">
+					  <!-- コメント数、いいね数の算出 -->
 					  <%= post.post_comments.count %>コメント
 			          <%= post.post_goods.count %> いいね
 			        </div>
