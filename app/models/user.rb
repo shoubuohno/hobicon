@@ -1,6 +1,10 @@
 class User < ApplicationRecord
 
   attachment :image
+  # ユーザー名1~15文字以内
+  validates :user_name, length: { in: 1..15 }
+  # 新規登録時性別記入必須にするため
+  validates :sex, presence:true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
