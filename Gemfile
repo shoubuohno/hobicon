@@ -70,6 +70,8 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 #FontAwesomeの導入
 gem 'font-awesome-rails'
+# エラーメッセージの日本語化
+gem 'rails-i18n'
 #環境変数化
 gem 'dotenv-rails'
 group :production do

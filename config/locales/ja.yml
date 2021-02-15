@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        user_name: ユーザー名
+        sex: 性別
+        
